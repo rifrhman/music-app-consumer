@@ -11,9 +11,11 @@ class Listener {
       const { playlistId, targetEmail } = JSON.parse(message.content.toString());
       const playlist = await this._playlistSongService.getPlaylists(playlistId);
       const Songs = await this._playlistSongService.getSongs(playlistId);
+
       const detailsPlaylist = {
         playlist: {
-          playlist, Songs,
+          ...playlist,
+          songs: Songs,
         },
       };
       console.log(detailsPlaylist);
